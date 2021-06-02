@@ -24,11 +24,41 @@ const server = app.listen(process.env.PORT || 3003, () => {
    }
 });
 
-app.get('/', (req, res) => { res.send('Ping Pong!!!') })
+app.get('/', async (req, res) => { res.send('Ping Pong!!!') })
 
-app.get('/teachers',(req:Request,res:Response) => {
+app.get('/teacher',async (req:Request,res:Response):Promise<void> => {
    try {
+      const [result] = await connection.raw(`
+      SELECT * FROM teacher;
+      `)
       
+      res.status(200).send(result)
+   } catch (error) {
+      console.log(error)
+      res.send(error.message || error.sqlMessage)
+   }
+})
+
+app.get('/class',async (req:Request,res:Response):Promise<void> => {
+   try {
+      const [result] = await connection.raw(`
+      SELECT * FROM class;
+      `)
+      
+      res.status(200).send(result)
+   } catch (error) {
+      console.log(error)
+      res.send(error.message || error.sqlMessage)
+   }
+})
+
+app.get('/student',async (req:Request,res:Response):Promise<void> => {
+   try {
+      const [result] = await connection.raw(`
+      SELECT * FROM student;
+      `)
+      
+      res.status(200).send(result)
    } catch (error) {
       console.log(error)
       res.send(error.message || error.sqlMessage)
