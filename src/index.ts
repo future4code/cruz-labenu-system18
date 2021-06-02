@@ -1,7 +1,9 @@
 import express, { Express, Request, Response } from "express"
 import cors from "cors"
 import { AddressInfo } from "net"
+import deleteStudents from "./endpoints/deleteStudents";
 import connection from "./connection";
+
 
 export type Class = {
 name:string,
@@ -14,6 +16,8 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors())
 
+
+app.delete("/student/:id", deleteStudents)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
