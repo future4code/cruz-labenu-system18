@@ -16,7 +16,7 @@ const server = app.listen(process.env.PORT || 3003, () => {
   }
 });
 
-app.get('/', (req, res) => { res.send('Hello, Ping Ping!!!') })
+
 
 
 export default app
