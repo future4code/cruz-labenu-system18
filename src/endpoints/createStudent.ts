@@ -6,24 +6,6 @@ import isValidDate from "../validations/isValidDate";
 import isValidEmail from "../validations/isValidEmail";
 import isValidName from "../validations/isValidName";
 
-// async function createStudent(req: Request, res: Response): Promise<void> {
-//   try {
-//     const { name, email, birthDate, classId } = req.body;
-
-//     if (!name || !email || !birthDate || !classId) {
-//       res.statusCode = 400;
-//       throw new Error("incomplete or invalid data");
-//     }
-
-//     await connection.raw(`
-//          INSERT INTO student (name,email,birth_date,class_id)
-//          VALUES (
-//             "${name}",
-//             "${email}",
-//             "${birthDate.split("/").reverse().join("-")}",
-//             "${classId}"
-//          );
-//     `);
 
 export default async function createStudent(req: Request, res: Response): Promise<void> {
     try {
@@ -47,11 +29,11 @@ export default async function createStudent(req: Request, res: Response): Promis
         isValidName(name)
         isValidClass(req, res)
        
-        await connection.raw(`
+        await connection.raw(` 
        INSERT INTO student (name,email,birth_date,class_id) 
        VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
         res.status(200).send({
-            message: "New student created.",
+            message: "New student created.", 
             student,
         })
 
