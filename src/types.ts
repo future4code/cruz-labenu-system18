@@ -22,4 +22,12 @@ export type classroom = {
    module: number,
 }
 
+ export type classInfo = {
+   id?: number,
+   name: string,
+   start_date: Date,
+   end_date: Date,
+   module: number
+ }
+
  
