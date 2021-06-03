@@ -28,6 +28,9 @@ async function createStudent(req: Request, res: Response): Promise<void> {
     if (error.sqlMessage && error.sqlMessage.includes("Incorrect date value")) {
       res.status(400).send({ message: "incorrect date format" });
     }
+    if (error.sqlMessage && error.sqlMessage.includes("SQL syntax")) {
+      res.status(500).send({ message: "internal error" });
+    }
 
     console.error(error);
     res.send({ message: error.message || error.sqlMessage });
