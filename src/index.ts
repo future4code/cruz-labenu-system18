@@ -8,6 +8,7 @@ import getAllTeachers from "./endpoints/getAllTeachers";
 import getAllStudents from "./endpoints/getAllStudents";
 import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 import createClass from "./endpoints/createClass";
+import createStudent from "./endpoints/createStudent";
 
 
 export type Class = {
@@ -57,17 +58,6 @@ app.post('/teacher',async (req:Request,res:Response):Promise<void> => {
    }
 })
 
-app.post('/student',async (req:Request,res:Response):Promise<void> => {
-   try {
-      const {name,email,birth_date,class_id} = req.body
-      const result = await connection.raw(`
-      INSERT INTO student (name,email,birth_date,class_id) 
-      VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
-      res.status(200).send(result[1])
-   } catch (error) {
-      console.log(error)
-      res.send(error.message || error.sqlMessage)
-   }
-})
+app.post('/student',createStudent)
 
 app.post('/class',createClass)
