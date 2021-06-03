@@ -35,7 +35,19 @@ export default async function createTeacher(req: Request, res: Response): Promis
          message: "New teacher created.",
          teacher,
       })
-   } catch (error) {
-      res.send(error.message || error.sqlMessage)
-   }
+  } catch (error) {
+    if (error.sqlMessage && error.sqlMessage.includes("Duplicate")) {
+      res.status(400).send({ message: "email has already been registered" });
+    }
+    if (error.sqlMessage && error.sqlMessage.includes("Incorrect date value")) {
+      res.status(400).send({ message: "incorrect date format" });
+    }
+    if (error.sqlMessage && error.sqlMessage.includes("SQL syntax")) {
+      res.status(500).send({ message: "internal error" });
+    }
+
+    console.error(error);
+    res.send({ message: error.message || error.sqlMessage });
+  }
 }
+
