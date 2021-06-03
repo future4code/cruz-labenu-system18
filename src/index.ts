@@ -8,8 +8,10 @@ import getAllTeachers from "./endpoints/getAllTeachers";
 import getAllStudents from "./endpoints/getAllStudents";
 import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 import createClass from "./endpoints/createClass";
+
 import createStudent from './endpoints/createStudent'
 import createTeacher from './endpoints/createTeacher'
+
 
 
 export type Class = {

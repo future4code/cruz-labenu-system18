@@ -1,16 +1,16 @@
 export type student = {
-    id: number,
+    id?: number,
     name: string,
     email: string,
-    birth_id: Date,
+    birth_date: Date,
     class_id: number,
  }
 
  export type teacher = {
-    id: number,
+    id?: number,
     name: string,
     email: string,
-    birth_id: Date,
+    birth_date: Date,
     class_id: number,
  }
 

@@ -1,27 +1,62 @@
 import { Request, Response } from "express";
 import connection from "../connection";
+import { student } from "../types";
+import isValidClass from "../validations/isValidClass";
+import isValidDate from "../validations/isValidDate";
+import isValidEmail from "../validations/isValidEmail";
+import isValidName from "../validations/isValidName";
 
-async function createStudent(req: Request, res: Response): Promise<void> {
-  try {
-    const { name, email, birthDate, classId } = req.body;
+// async function createStudent(req: Request, res: Response): Promise<void> {
+//   try {
+//     const { name, email, birthDate, classId } = req.body;
 
-    if (!name || !email || !birthDate || !classId) {
-      res.statusCode = 400;
-      throw new Error("incomplete or invalid data");
-    }
+//     if (!name || !email || !birthDate || !classId) {
+//       res.statusCode = 400;
+//       throw new Error("incomplete or invalid data");
+//     }
 
-    await connection.raw(`
-         INSERT INTO student (name,email,birth_date,class_id)
-         VALUES (
-            "${name}",
-            "${email}",
-            "${birthDate.split("/").reverse().join("-")}",
-            "${classId}"
-         );
-    `);
+//     await connection.raw(`
+//          INSERT INTO student (name,email,birth_date,class_id)
+//          VALUES (
+//             "${name}",
+//             "${email}",
+//             "${birthDate.split("/").reverse().join("-")}",
+//             "${classId}"
+//          );
+//     `);
 
-    res.status(201).send({ message: "created" });
-  } catch (error) {
+export default async function createStudent(req: Request, res: Response): Promise<void> {
+    try {
+        const { name, email, birth_date, class_id } = req.body
+        const student: student = { name, email, birth_date, class_id }
+        if (!name) {
+            throw new Error("name is missing")
+        }
+        if (!email) {
+            throw new Error("email is missing")
+        }
+        if (!birth_date) {
+            throw new Error("birth_date is missing")
+        }
+        if (!class_id) {
+            throw new Error("class_id is missing")
+        }
+
+        isValidEmail(email)
+        isValidDate(birth_date)
+        isValidName(name)
+        isValidClass(req, res)
+       
+        await connection.raw(`
+       INSERT INTO student (name,email,birth_date,class_id) 
+       VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
+        res.status(200).send({
+            message: "New student created.",
+            student,
+        })
+
+res.status(201).send({ message: "created" });
+   } catch (error) {
     if (error.sqlMessage && error.sqlMessage.includes("Duplicate")) {
       res.status(400).send({ message: "email has already been registered" });
     }
@@ -37,4 +72,3 @@ async function createStudent(req: Request, res: Response): Promise<void> {
   }
 }
 
-export default createStudent;

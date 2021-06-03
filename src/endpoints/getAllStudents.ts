@@ -7,12 +7,8 @@ export default async function getAllStudents(
 ): Promise<void> {
    try {
       const  id  = req.params.id
-      const [result] = await connection.raw(`
-      SELECT * FROM student
-      `)
-      console.log('result: ',result)
+      const [result] = await connection.raw(`SELECT * FROM student`)
       res.status(200).send(result)
-      
    } catch (error) {
       res.status(500).end()
    }

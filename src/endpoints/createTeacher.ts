@@ -1,26 +1,40 @@
 import { Request, Response } from "express";
 import connection from "../connection";
+import { teacher } from "../types";
+import isValidClass from "../validations/isValidClass";
+import isValidDate from "../validations/isValidDate";
+import isValidEmail from "../validations/isValidEmail";
+import isValidName from "../validations/isValidName";
 
-async function createTeacher(req: Request, res: Response): Promise<void> {
-  try {
-    const { name, email, birthDate, classId } = req.body;
+export default async function createTeacher(req: Request, res: Response): Promise<void> {
+   try {
+      const { name, email, birth_date, class_id } = req.body
+      const teacher: teacher = { name, email, birth_date, class_id }
+      if (!name) {
+         throw new Error("name is missing")
+      }
+      if (!email) {
+         throw new Error("email is missing")
+      }
+      if (!birth_date) {
+         throw new Error("birth_date is missing")
+      }
+      if (!class_id) {
+         throw new Error("class_id is missing")
+      }
 
-    if (!name || !email || !birthDate || !classId) {
-      res.statusCode = 400;
-      throw new Error("incomplete or invalid data");
-    }
+      isValidEmail(email)
+      isValidDate(birth_date)
+      isValidName(name)
+     await  isValidClass(req, res) 
 
-    await connection.raw(`
-      INSERT  INTO teacher (name,email,birth_date,class_id) 
-      VALUES (
-        "${name}",
-        "${email}",
-        "${birthDate.split("/").reverse().join("-")}",
-        "${classId}"
-      );
-    `);
-
-    res.status(201).send({ message: "created" });
+      await connection.raw(`
+      INSERT INTO teacher (name,email,birth_date,class_id) 
+      VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
+      res.status(200).send({
+         message: "New teacher created.",
+         teacher,
+      })
   } catch (error) {
     if (error.sqlMessage && error.sqlMessage.includes("Duplicate")) {
       res.status(400).send({ message: "email has already been registered" });
@@ -37,4 +51,3 @@ async function createTeacher(req: Request, res: Response): Promise<void> {
   }
 }
 
-export default createTeacher;
