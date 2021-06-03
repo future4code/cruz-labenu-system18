@@ -6,9 +6,11 @@ import connection from "./connection";
 import getAllClasses  from "./endpoints/getAllClasses";
 import getAllTeachers from "./endpoints/getAllTeachers";
 import getAllStudents from "./endpoints/getAllStudents";
-import seeStudentHobbie from "./endpoints/seeStudentHobbie";
-import createClass from "./endpoints/createClass";
+import getStudentByClass from './endpoints/getStudentByClass'
 
+import seeStudentHobbie from "./endpoints/seeStudentHobbie";
+
+import createClass from "./endpoints/createClass";
 import createStudent from './endpoints/createStudent'
 import createTeacher from './endpoints/createTeacher'
 
@@ -32,6 +34,8 @@ app.get('/teacher',getAllTeachers)
 app.get('/class',getAllClasses)
 
 app.get('/student',getAllStudents)
+
+app.get('/student/class/:idClass', getStudentByClass)
 
 app.get('/student/:id',seeStudentHobbie)
 

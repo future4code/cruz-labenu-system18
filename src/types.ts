@@ -14,4 +14,12 @@ export type student = {
     class_id: number,
  }
 
+ export type classInfo = {
+   id?: number,
+   name: string,
+   start_date: Date,
+   end_date: Date,
+   module: number
+ }
+
  
