@@ -1,16 +1,14 @@
 import { Request, Response } from "express";
 import connection from "../connection";
 
-export default async function deleteStudents(
+export default async function getAllStudents(
    req: Request,
    res: Response
 ): Promise<void> {
    try {
       const  id  = req.params.id
       const [result] = await connection.raw(`
-      DELETE FROM student,student_hobbie 
-      using student_id
-      WHERE student_id = ${id};
+      SELECT * FROM student
       `)
       console.log('result: ',result)
       res.status(200).send(result)
