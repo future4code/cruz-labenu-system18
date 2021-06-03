@@ -6,9 +6,7 @@ export default async function seeStudentHobbie(
     res: Response
  ): Promise<void> {
     try {
-       const  id  = Number(req.params.id)
-       console.log('id: ',id)
-       console.log('type:',typeof(id))
+       const  id  = req.params.id
        const [result] = await connection.raw(`
        SELECT student_id AS "ID",student.name  AS "Name",student.email AS "E-MAIL",hobbie.name AS "HOBBIE" FROM student 
        JOIN student_hobbie
@@ -17,9 +15,7 @@ export default async function seeStudentHobbie(
        ON hobbie.id =student_hobbie.hobbie_id
        WHERE student_id = ${id};
        `)
-       console.log('result: ',result)
        res.status(200).send(result)
-       
     } catch (error) {
        res.status(500).end()
     }
