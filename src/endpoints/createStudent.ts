@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import connection from "../connection";
 
-export default async function createStudent(
-  req: Request,
-  res: Response
-): Promise<void> {
+async function createStudent(req: Request, res: Response): Promise<void> {
   try {
     const { name, email, birthDate, classId } = req.body;
 
@@ -25,16 +22,16 @@ export default async function createStudent(
 
     res.status(201).send({ message: "created" });
   } catch (error) {
-    if (error.sqlMessage.includes("Duplicate")) {
-      res.statusCode = 400
-      res.send({ message: "email has already been registered" });
+    if (error.sqlMessage && error.sqlMessage.includes("Duplicate")) {
+      res.status(400).send({ message: "email has already been registered" });
     }
-    if (error.sqlMessage.includes("Incorrect date value")) {
-      res.statusCode = 400
-      res.send({ message: "incorrect date format" });
+    if (error.sqlMessage && error.sqlMessage.includes("Incorrect date value")) {
+      res.status(400).send({ message: "incorrect date format" });
     }
 
-    console.log(error);
+    console.error(error);
     res.send({ message: error.message || error.sqlMessage });
   }
 }
+
+export default createStudent;
