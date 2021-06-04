@@ -13,6 +13,7 @@ import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 import createClass from "./endpoints/createClass";
 import createStudent from './endpoints/createStudent'
 import createTeacher from './endpoints/createTeacher'
+import getStudentByHobbie from "./endpoints/getStudentByHobbie";
 
 
 
@@ -36,6 +37,8 @@ app.get('/class',getAllClasses)
 app.get('/student',getAllStudents)
 
 app.get('/student/class/:idClass', getStudentByClass)
+
+app.get('/student/hobbie/:idHobbie', getStudentByHobbie)
 
 app.get('/student/:id',seeStudentHobbie)
 
