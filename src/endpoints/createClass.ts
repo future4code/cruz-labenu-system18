@@ -7,7 +7,7 @@ import { dateValidations, isClassNameValid } from "../validations/classValidatio
 
 export default async function (req:Request,res:Response):Promise<void>  {
     try {
-       const {name,start_date,end_date,module} = req.body
+       let {name,start_date,end_date,module, na_night} = req.body
        if (!name) {
          throw new Error("name is missing")
      }
@@ -24,6 +24,9 @@ export default async function (req:Request,res:Response):Promise<void>  {
      dateValidations(start_date,end_date)
      if(module<0 || module>7){
         throw new Error("Module must be between 0 and 7.")
+     }
+     if(na_night) {
+        name = name + "_na_night"
      }
 
      const classroom:classroom = {
