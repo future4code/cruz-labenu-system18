@@ -13,22 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../connection"));
-function deleteStudents(req, res) {
+function isValidClass(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const id = req.params.id;
-            const [result] = yield connection_1.default.raw(`
-      DELETE FROM student_hobbie
-      WHERE student_id = 6)
-      
-     (DELETE from student
-      WHERE id = 6`);
-            console.log('result: ', result);
-            res.status(200).send(result);
+            const [allClassIds] = yield connection_1.default.raw(`SELECT id FROM class`);
+            const class_id = req.body.class_id;
+            const idIdExist = (object) => {
+                return (object.id == class_id);
+            };
+            const isIdExist = allClassIds.filter(idIdExist);
+            if (!isIdExist.length) {
+                throw new Error("This class doesn't exist");
+            }
         }
         catch (error) {
-            res.status(500).end();
+            res.send(error.message || error.sqlMessage);
         }
     });
 }
-exports.default = deleteStudents;
+exports.default = isValidClass;

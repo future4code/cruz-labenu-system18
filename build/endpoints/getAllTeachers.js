@@ -13,22 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../connection"));
-function deleteStudents(req, res) {
+function getAllTeachers(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const id = req.params.id;
-            const [result] = yield connection_1.default.raw(`
-      DELETE FROM student_hobbie
-      WHERE student_id = 6)
-      
-     (DELETE from student
-      WHERE id = 6`);
-            console.log('result: ', result);
+            const [result] = yield connection_1.default.raw(`SELECT * FROM teacher;`);
             res.status(200).send(result);
         }
         catch (error) {
-            res.status(500).end();
+            res.send(error.message || error.sqlMessage);
         }
     });
 }
-exports.default = deleteStudents;
+exports.default = getAllTeachers;
