@@ -9,6 +9,8 @@ import getAllStudents from "./endpoints/getAllStudents";
 import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 import createClass from "./endpoints/createClass";
 import createStudent from "./endpoints/createStudent";
+import { addTeacherToClass } from "./endpoints/addTeacherToClass";
+import { addStudentToClass } from "./endpoints/addStudentToClass";
 
 
 export type Class = {
@@ -24,6 +26,7 @@ app.use(cors())
 
 
 app.delete("/student/:id", deleteStudents)
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
@@ -61,3 +64,7 @@ app.post('/teacher',async (req:Request,res:Response):Promise<void> => {
 app.post('/student',createStudent)
 
 app.post('/class',createClass)
+
+app.put('/teacher/edit/:teacherId',addTeacherToClass )
+
+app.put('/student/edit/:studentId',addStudentToClass )
