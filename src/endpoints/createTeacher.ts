@@ -19,18 +19,25 @@ export default async function createTeacher(req: Request, res: Response): Promis
       if (!birth_date) {
          throw new Error("birth_date is missing")
       }
-      if (!class_id) {
-         throw new Error("class_id is missing")
-      }
+    
 
       isValidEmail(email)
       isValidDate(birth_date)
       isValidName(name)
-     await  isValidClass(req, res) 
-
+      if(class_id){
+         isValidClass(req, res) 
+         await connection.raw(`
+         INSERT INTO teacher (name,email,birth_date,class_id) 
+         VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
+         res.status(200).send({
+            message: "New teacher created.",
+            teacher,
+         })
+      }
+      
       await connection.raw(`
-      INSERT INTO teacher (name,email,birth_date,class_id) 
-      VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
+      INSERT INTO teacher (name,email,birth_date) 
+      VALUES ("${name}","${email}","${birth_date}");`)
       res.status(200).send({
          message: "New teacher created.",
          teacher,

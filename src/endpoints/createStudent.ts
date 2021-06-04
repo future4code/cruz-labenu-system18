@@ -20,22 +20,30 @@ export default async function createStudent(req: Request, res: Response): Promis
         if (!birth_date) {
             throw new Error("birth_date is missing")
         }
-        if (!class_id) {
-            throw new Error("class_id is missing")
-        }
 
         isValidEmail(email)
         isValidDate(birth_date)
         isValidName(name)
-        isValidClass(req, res)
-       
+        if(class_id) {
+          isValidClass(req, res)
+          await connection.raw(` 
+          INSERT INTO student (name,email,birth_date,class_id) 
+          VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
+           res.status(200).send({
+               message: "New student created.", 
+               student,
+           })
+        
+        }
         await connection.raw(` 
-       INSERT INTO student (name,email,birth_date,class_id) 
-       VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
+       INSERT INTO student (name,email,birth_date) 
+       VALUES ("${name}","${email}","${birth_date}");`)
         res.status(200).send({
             message: "New student created.", 
             student,
         })
+       
+        
 
 res.status(201).send({ message: "created" });
    } catch (error) {
