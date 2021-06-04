@@ -14,6 +14,7 @@ import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 import createClass from "./endpoints/createClass";
 import createStudent from './endpoints/createStudent'
 import createTeacher from './endpoints/createTeacher'
+import updateModule from "./endpoints/updateModule";
 import getStudentByHobbie from "./endpoints/getStudentByHobbie";
 
 import { addTeacherToClass } from "./endpoints/addTeacherToClass";
@@ -67,9 +68,12 @@ app.post("/class", createClass);
 
 app.post('/class',createClass)
 
+app.put('/class/:id', updateModule)
+
 app.put('/teacher/edit/:teacherId',addTeacherToClass )
 
 app.put('/student/edit/:studentId',addStudentToClass )
 
 app.delete("/student/:id", deleteStudents);
+
 
