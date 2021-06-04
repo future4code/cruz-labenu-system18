@@ -13,7 +13,13 @@ import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 
 import createClass from "./endpoints/createClass";
 import createStudent from "./endpoints/createStudent";
+
+import { addTeacherToClass } from "./endpoints/addTeacherToClass";
+import { addStudentToClass } from "./endpoints/addStudentToClass";
+
+
 import createTeacher from "./endpoints/createTeacher";
+
 
 export type Class = {
   name: string;
@@ -32,7 +38,19 @@ app.get("/", async (req, res) => {
 
 app.get("/teacher", getAllTeachers);
 
+
+
+const server = app.listen(process.env.PORT || 3003, () => {
+   if (server) {
+      const address = server.address() as AddressInfo;
+      console.log(`Server is running in http://localhost:${address.port}`);
+   } else {
+      console.error(`Failure upon starting server.`);
+   }
+});
+
 app.get("/class", getAllClasses);
+
 
 app.get("/student", getAllStudents);
 
@@ -50,11 +68,10 @@ app.post("/class", createClass);
 
 app.delete("/student/:id", deleteStudents);
 
-const server = app.listen(process.env.PORT || 3003, () => {
-  if (server) {
-    const address = server.address() as AddressInfo;
-    console.log(`Server is running in http://localhost:${address.port}`);
-  } else {
-    console.error(`Failure upon starting server.`);
-  }
-});
+
+app.post('/class',createClass)
+
+app.put('/teacher/edit/:teacherId',addTeacherToClass )
+
+app.put('/student/edit/:studentId',addStudentToClass )
+
