@@ -8,10 +8,11 @@ export default async function deleteStudents(
    try {
       const  id  = req.params.id
       const [result] = await connection.raw(`
-      DELETE FROM student,student_hobbie 
-      using student_id
+      DELETE FROM student_hobbie
       WHERE student_id = ${id};
-      `)
+      
+      DELETE from student
+      WHERE id = ${id}`)
       console.log('result: ',result)
       res.status(200).send(result)
       
