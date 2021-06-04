@@ -13,6 +13,7 @@ import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 import createClass from "./endpoints/createClass";
 import createStudent from './endpoints/createStudent'
 import createTeacher from './endpoints/createTeacher'
+import updateModule from "./endpoints/updateModule";
 
 
 
@@ -44,6 +45,8 @@ app.post('/teacher', createTeacher)
 app.post('/student', createStudent)
 
 app.post('/class', createClass)
+
+app.put('/class/:id', updateModule)
 
 app.delete("/student/:id", deleteStudents)
 
