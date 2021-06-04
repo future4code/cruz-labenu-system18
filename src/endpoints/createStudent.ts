@@ -20,9 +20,6 @@ export default async function createStudent(req: Request, res: Response): Promis
         if (!birth_date) {
             throw new Error("birth_date is missing")
         }
-        // if (!class_id) {
-        //     throw new Error("class_id is missing")
-        // }
 
         isValidEmail(email)
         isValidDate(birth_date)
