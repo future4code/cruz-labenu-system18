@@ -14,6 +14,8 @@ import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 import createClass from "./endpoints/createClass";
 import createStudent from "./endpoints/createStudent";
 import createTeacher from "./endpoints/createTeacher";
+import deleteStudentClass from "./endpoints/deleteStudentClass";
+import deleteTeacherClass from "./endpoints/deleteTeacherClass";
 
 export type Class = {
   name: string;
@@ -49,6 +51,10 @@ app.post("/student", createStudent);
 app.post("/class", createClass);
 
 app.delete("/student/:id", deleteStudents);
+
+app.delete('/class/student/:class_id/:student_id', deleteStudentClass)
+
+app.delete('/class/teacher/:class_id/:teacher_id', deleteTeacherClass)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
