@@ -12,7 +12,9 @@ import getAge from "./endpoints/getAge";
 import seeStudentHobbie from "./endpoints/seeStudentHobbie";
 
 import createClass from "./endpoints/createClass";
-import createStudent from "./endpoints/createStudent";
+import createStudent from './endpoints/createStudent'
+import createTeacher from './endpoints/createTeacher'
+import getStudentByHobbie from "./endpoints/getStudentByHobbie";
 
 import { addTeacherToClass } from "./endpoints/addTeacherToClass";
 import { addStudentToClass } from "./endpoints/addStudentToClass";
@@ -32,12 +34,6 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", async (req, res) => {
-  res.send("Ping Pong!!!");
-});
-
-app.get("/teacher", getAllTeachers);
-
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
@@ -51,6 +47,7 @@ const server = app.listen(process.env.PORT || 3003, () => {
 
 app.get("/class", getAllClasses);
 
+app.get("/teacher", getAllTeachers);
 
 app.get("/student", getAllStudents);
 
@@ -58,7 +55,9 @@ app.get("/student/age/:id", getAge);
 
 app.get("/student/class/:idClass", getStudentByClass);
 
-app.get("/student/:id", seeStudentHobbie);
+app.get('/student/hobbie/:idHobbie', getStudentByHobbie)
+
+app.get('/student/:id',seeStudentHobbie)
 
 app.post("/teacher", createTeacher);
 
@@ -66,12 +65,11 @@ app.post("/student", createStudent);
 
 app.post("/class", createClass);
 
-app.delete("/student/:id", deleteStudents);
-
-
 app.post('/class',createClass)
 
 app.put('/teacher/edit/:teacherId',addTeacherToClass )
 
 app.put('/student/edit/:studentId',addStudentToClass )
+
+app.delete("/student/:id", deleteStudents);
 
