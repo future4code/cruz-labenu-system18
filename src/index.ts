@@ -22,6 +22,8 @@ import { addStudentToClass } from "./endpoints/addStudentToClass";
 
 
 import createTeacher from "./endpoints/createTeacher";
+import deleteStudentClass from "./endpoints/deleteStudentClass";
+import deleteTeacherClass from "./endpoints/deleteTeacherClass";
 
 
 export type Class = {
@@ -75,5 +77,11 @@ app.put('/teacher/edit/:teacherId',addTeacherToClass )
 app.put('/student/edit/:studentId',addStudentToClass )
 
 app.delete("/student/:id", deleteStudents);
+
+app.delete('/class/student/:class_id/:student_id', deleteStudentClass)
+
+app.delete('/class/teacher/:class_id/:teacher_id', deleteTeacherClass)
+
+
 
 
