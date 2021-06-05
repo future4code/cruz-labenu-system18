@@ -17,6 +17,7 @@ import { addStudentToClass } from "./endpoints/addStudentToClass";
 import createTeacher from "./endpoints/createTeacher";
 import deleteStudentClass from "./endpoints/deleteStudentClass";
 import deleteTeacherClass from "./endpoints/deleteTeacherClass";
+import getTeacherByClass from "./endpoints/getTeacherByClass";
 
 
 export type Class = {
@@ -50,6 +51,8 @@ app.get("/student", getAllStudents);
 app.get("/student/age/:id", getAge);
 
 app.get("/student/class/:idClass", getStudentByClass);
+
+app.get("/teacher/class/:idClass", getTeacherByClass);
 
 app.get('/student/hobbie/:idHobbie', getStudentByHobbie)
 

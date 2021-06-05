@@ -18,7 +18,7 @@ async function getTeacherByClass(req: Request, res: Response): Promise<void> {
     }
 
     const [result] = await connection.raw(`
-      SELECT * FROM student
+      SELECT * FROM teacher
       WHERE class_id = ${idClass};
     `);
 
