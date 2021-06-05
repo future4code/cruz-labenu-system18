@@ -40,7 +40,6 @@ export default async function (req:Request,res:Response):Promise<void>  {
           classroom
        })
     } catch (error) {
-       console.log(error)
        res.send(error.message || error.sqlMessage)
     }
  }

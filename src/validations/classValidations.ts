@@ -11,7 +11,6 @@ export function dateValidations(start_date: string, end_date: string): void {
     let start_year = Number(start_date.slice(0, 4))
     let start_month = Number(start_date.slice(5, 7))
     let start_day = Number(start_date.slice(8, 10))
-    console.log('startday: ',start_day)
 
     let end_year = Number(end_date.slice(0, 4))
     let end_month = Number(end_date.slice(5, 7))

@@ -7,7 +7,6 @@ export default async function getAllClasses (req:Request,res:Response):Promise<v
        const [result] = await connection.raw(`  SELECT * FROM class;`)
        res.status(200).send(result)
     } catch (error) {
-       console.log(error)
        res.send(error.message || error.sqlMessage)
     }
  }
