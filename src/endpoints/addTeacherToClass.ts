@@ -6,6 +6,7 @@ export const addTeacherToClass = async (req: Request, res: Response) => {
         
         let { class_id } = req.body 
         let  { teacherId }  = req.params 
+        console.log('Teacher ID : ',teacherId)
         
         const result = await connection.raw(`
         UPDATE teacher
