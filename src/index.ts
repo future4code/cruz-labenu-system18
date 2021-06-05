@@ -2,25 +2,18 @@ import express, { Express, Request, Response } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
 import deleteStudents from "./endpoints/deleteStudents";
-import connection from "./connection";
 import getAllClasses from "./endpoints/getAllClasses";
 import getAllTeachers from "./endpoints/getAllTeachers";
 import getAllStudents from "./endpoints/getAllStudents";
 import getStudentByClass from "./endpoints/getStudentByClass";
 import getAge from "./endpoints/getAge";
-
 import seeStudentHobbie from "./endpoints/seeStudentHobbie";
-
 import createClass from "./endpoints/createClass";
 import createStudent from './endpoints/createStudent'
-import createTeacher from './endpoints/createTeacher'
 import updateModule from "./endpoints/updateModule";
 import getStudentByHobbie from "./endpoints/getStudentByHobbie";
-
 import { addTeacherToClass } from "./endpoints/addTeacherToClass";
 import { addStudentToClass } from "./endpoints/addStudentToClass";
-
-
 import createTeacher from "./endpoints/createTeacher";
 import deleteStudentClass from "./endpoints/deleteStudentClass";
 import deleteTeacherClass from "./endpoints/deleteTeacherClass";

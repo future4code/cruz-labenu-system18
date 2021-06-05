@@ -15,7 +15,11 @@ export default async function seeStudentHobbie(
        ON hobbie.id =student_hobbie.hobbie_id
        WHERE student_id = ${id};
        `)
-       res.status(200).send(result)
+       const hobbies = result.map((result: { HOBBIE: any; }) => result.HOBBIE  )
+       res.status(200).send({
+          name: result[0].Name,
+          hobbies: hobbies
+       })
     } catch (error) {
        res.status(500).end()
     }
