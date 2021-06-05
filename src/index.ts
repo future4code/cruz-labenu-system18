@@ -19,7 +19,7 @@ import deleteStudentClass from "./endpoints/deleteStudentClass";
 import deleteTeacherClass from "./endpoints/deleteTeacherClass";
 import getTeacherByClass from "./endpoints/getTeacherByClass";
 
-
+ 
 export type Class = {
   name: string;
   start_date: Date;
