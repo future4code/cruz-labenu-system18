@@ -19,7 +19,6 @@ export default async function createTeacher(req: Request, res: Response): Promis
       if (!birth_date) {
          throw new Error("birth_date is missing")
       }
-    console.log('class_id; ',class_id)
 
       isValidEmail(email)
       isValidDate(birth_date)

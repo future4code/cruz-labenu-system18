@@ -8,9 +8,7 @@ export default async function isValidClassByBody( req: Request, res: Response): 
     const idIdExist = (object: any) => {
       return object.id == class_id;
     };
-    console.log('ALLCLASSIDS:   ',allClassIds)
     const isIdExist = allClassIds.filter(idIdExist);
-    console.log('isIDExist CLASS: ',isIdExist)
     if (!isIdExist.length) {
       throw new Error("This class doesn't exist");
     }
