@@ -61,8 +61,6 @@ app.post("/student", createStudent);
 
 app.post("/class", createClass);
 
-app.post('/class',createClass)
-
 app.put('/class/:id', updateModule)
 
 app.put('/teacher/edit/:teacherId',addTeacherToClass )

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import connection from "../connection";
 import { teacher } from "../types";
-import isValidClass from "../validations/isValidClass";
+import isValidClassByBody from "../validations/isValidClassByBody";
 import isValidDate from "../validations/isValidDate";
 import isValidEmail from "../validations/isValidEmail";
 import isValidName from "../validations/isValidName";
@@ -19,16 +19,16 @@ export default async function createTeacher(req: Request, res: Response): Promis
       if (!birth_date) {
          throw new Error("birth_date is missing")
       }
-    
+    console.log('class_id; ',class_id)
 
       isValidEmail(email)
       isValidDate(birth_date)
       isValidName(name)
       if(class_id){
-         isValidClass(req, res) 
+         isValidClassByBody(req, res) 
          await connection.raw(`
          INSERT INTO teacher (name,email,birth_date,class_id) 
-         VALUES ("${name}","${email}","${birth_date}","${class_id}");`)
+         VALUES ("${name}","${email}","${birth_date}",${class_id});`)
          res.status(200).send({
             message: "New teacher created.",
             teacher,
