@@ -1,67 +1,58 @@
-## LabenuSystem:
+<h1 align="center"> LabenuSystem </h1>
+<h3 align="center"> Projeto de sistema de controle de alunos para a aplicação dos conhecimentos adquiridos no curso sobre typescript e MySql - 
+Concluído :rocket: </h3>
 
-Você estuda na Labenu_ há tanto tempo que já parecem anos, não é? Então, hoje, vamos pedir para criar um sistema que represente o básico da nossa organização. 
+### 🎲 Rodando o Back End (servidor)
+# Clone este repositório
+$ git clone <https://github.com/future4code/cruz-labenu-system18.git>
 
-Ele deve possuir, ao menos, as 3 entidades importantes:
+# Crie um arquivo .env com suas informações do BD
+$ touch .env
 
-1. Estudantes 
+# Acesse a pasta do projeto no terminal/cmd
+$ cd build
 
-    Representa estudantes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e os principais hobbies dele. 
+# Instale as dependências
+$ npm install
 
-2. Docente
+# Execute a aplicação
+$ npm run start
 
-    Representa docentes da nossa instituição. Eles devem possuir: id, nome, email, data de nascimento e todas as especialidades dele. Há 7 especialidades: React, Redux, CSS, Testes, Typescript, Programação Orientada a Objetos e Backend
+# O servidor inciará na porta:3003 - acesse <http://localhost:3003>
 
-3. Turma
 
-    Toda turma é composta das seguintes características: id, nome, data de início, data de término, lista de professores responsáveis, uma lista de alunos e módulo atual em que a turma está.
+### Endpoits
 
-    O módulo pode assumir os valores de 1 a 7 ou `undefined`, indicando que as aulas dessa turma ainda não começaram. Para esse exercício, vamos considerar que existam dois tipos de turma: integral ou noturna. Há uma restrição para o nome das turmas noturnas: tem que terminar com `-na-night`.
+- Criar estudante;
+- Criar docente;
+- Criar turma;
+- Adicionar estudante na turma;
+- Adicionar docente na turma;
+- Pegar a idade de algum estudante a partir do id
+- Exibir estudantes de uma turma;
+- Exibir docentes de uma turma;
+- Exibir estudantes que possuam o mesmo hobby;
+- Remover estudante de uma turma;
+- Remover estudante;
+- Remover docente de uma turma;
+- Mudar turma de módulo
 
-As funcionalidades do sistema são:
 
-→ Criar estudante;
-("/student", createStudent);
 
-→ Criar docente;
-("/teacher", createTeacher);
+### Tecnologias
+- Typescript
+- MySql
 
-→ Criar turma;
-("/class", createClass)
+### Autores
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/adryanefernandes"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/76170319?s=400&u=c79a37b29d25709e380c64ae9d9432b35f72638e&v=4" width="100px;" alt=""/><br /><sub><b>Adryane Fernandes</b></sub></a><br />
+    <td align="center"><a href="https://github.com/AiEmma"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/30822688?v=4" width="100px;" alt=""/><br /><sub><b>Danielle Costa</b></sub></a><br />
+    <td align="center"><a href="https://github.com/tandersonf92"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/53446211?v=4" width="100px;" alt=""/><br /><sub><b>Anderson de Oliveira</b></sub></a><br />
+  </tr>
+</table>
 
-→ Adicionar estudante na turma;
-('/student/edit/:studentId',addStudentToClass )
 
-→ Adicionar docente na turma;
-('/teacher/edit/:teacherId',addTeacherToClass )
 
-→  Deletar estudante;
-("/student/:id", deleteStudents)
 
-→ Ver hobie do estudante 
-("/student/:id", seeStudentHobbie);
-
-→ Pegar a idade de algum estudante a partir do id
-("/student/:id", seeStudentHobbie);
-
-→ Exibir estudantes de uma turma;
-("/student/class/:idClass", getStudentByClass);
-
-→ Exibir docentes de uma turma;
-("/teacher/class/:idClass", getTeacherByClass)
-
-→ Exibir estudantes que possuam o mesmo hobby;
-('/student/hobbie/:idHobbie', getStudentByHobbie)
-
-→ Remover estudante de uma turma;
-('/class/student/:class_id/:student_id', deleteStudentClass)
-
-→ Remover estudante;
-("/student/:id", deleteStudents)
-
-→ Remover docente de uma turma;
-('/class/teacher/:class_id/:teacher_id', deleteTeacherClass)
-
-→ Mudar turma de módulo
-('/class/:id', updateModule)
 
