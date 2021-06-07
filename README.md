@@ -2,48 +2,47 @@
 <h3 align="center"> Projeto de sistema de controle de alunos para a aplicação dos conhecimentos adquiridos no curso sobre typescript e MySql - 
 Concluído :rocket: </h3>
 
-### 🎲 Rodando o Back End (servidor)
-# Clone este repositório
+### 🎲 Rodando o Back End (servidor) 
+- Clone este repositório
 $ git clone <https://github.com/future4code/cruz-labenu-system18.git>
 
-# Crie um arquivo .env com suas informações do BD
+- Crie um arquivo .env com suas informações do BD
 $ touch .env
 
-# Acesse a pasta do projeto no terminal/cmd
+- Acesse a pasta do projeto no terminal/cmd
 $ cd build
 
-# Instale as dependências
+- Instale as dependências
 $ npm install
 
-# Execute a aplicação
+- Execute a aplicação
 $ npm run start
 
-# O servidor inciará na porta:3003 - acesse <http://localhost:3003>
+- O servidor inciará na porta:3003 - acesse <http://localhost:3003>
 
 
-### Endpoits
+### :sparkles: Endpoits 
 
-- Criar estudante;
-- Criar docente;
-- Criar turma;
-- Adicionar estudante na turma;
-- Adicionar docente na turma;
-- Pegar a idade de algum estudante a partir do id
-- Exibir estudantes de uma turma;
-- Exibir docentes de uma turma;
-- Exibir estudantes que possuam o mesmo hobby;
-- Remover estudante de uma turma;
-- Remover estudante;
-- Remover docente de uma turma;
-- Mudar turma de módulo
+- [x] Criar estudante;
+- [x] Criar docente;
+- [x] Criar turma;
+- [x] Adicionar estudante na turma;
+- [x] Adicionar docente na turma;
+- [x] Pegar a idade de algum estudante a partir do id
+- [x] Exibir estudantes de uma turma;
+- [x] Exibir docentes de uma turma;
+- [x] Exibir estudantes que possuam o mesmo hobby;
+- [x] Remover estudante de uma turma;
+- [x] Remover estudante;
+- [x] Remover docente de uma turma;
+- [x] Mudar turma de módulo
 
 
-
-### Tecnologias
+### :wrench: Tecnologias 
 - Typescript
 - MySql
 
-### Autores
+### :black_nib: Autores 
 <table>
   <tr>
     <td align="center"><a href="https://github.com/adryanefernandes"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/76170319?s=400&u=c79a37b29d25709e380c64ae9d9432b35f72638e&v=4" width="100px;" alt=""/><br /><sub><b>Adryane Fernandes</b></sub></a><br />
