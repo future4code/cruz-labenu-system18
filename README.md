@@ -1,25 +1,27 @@
-<h1 align="center"> LabenuSystem </h1>
-<h3 align="center"> Projeto de sistema de controle de alunos para a aplicação dos conhecimentos adquiridos no curso sobre typescript e MySql - 
-Concluído :rocket: </h3>
+# LabenuSystem 
+## Projeto de sistema de controle de alunos para a aplicação dos conhecimentos adquiridos no curso sobre typescript e MySql - Concluído :rocket:
+
+<br>
 
 ### 🎲 Rodando o Back End (servidor) 
-- Clone este repositório
+```bash
+# Clone este repositório
 $ git clone <https://github.com/future4code/cruz-labenu-system18.git>
 
-- Crie um arquivo .env com suas informações do BD
+# Crie um arquivo .env com suas informações do BD
 $ touch .env
 
-- Acesse a pasta do projeto no terminal/cmd
+# Acesse a pasta do projeto no terminal/cmd
 $ cd build
 
-- Instale as dependências
+# Instale as dependências
 $ npm install
 
-- Execute a aplicação
+# Execute a aplicação
 $ npm run start
 
 - O servidor inciará na porta:3003 - acesse <http://localhost:3003>
-
+```
 
 ### :sparkles: Endpoits 
 
