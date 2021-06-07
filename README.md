@@ -20,7 +20,7 @@ $ npm install
 # Execute a aplicação
 $ npm run start
 
-- O servidor inciará na porta:3003 - acesse <http://localhost:3003>
+# O servidor inciará na porta:3003 - acesse <http://localhost:3003>
 ```
 
 ### :sparkles: Endpoits 
